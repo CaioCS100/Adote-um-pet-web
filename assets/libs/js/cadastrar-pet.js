@@ -6,18 +6,17 @@ $(function() {
     var brasil = getBrasil();
     var today = new Date();
 
-
     $("#cadastrar").click(function (evt) {
       evt.preventDefault();
-      
+      var idUser = firebase.auth().currentUser.uid;
       var pet = {
         adotado: false,
         cidade: $("#cidades").val(),
         data_envio: today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(),
         estado: $("#estados").val(),
         genero: $("input[name='tipoPet']:checked").val(),
-        id: 'falta pegar o id',
-        idade: 'falta a idade',
+        id: '',
+        idade: $("#idades").val(),
         nome: $("#nomePet").val(),
         pathImages: [],
         sexo: $("input[name='genero']:checked").val(),
@@ -28,10 +27,20 @@ $(function() {
         pet.pathImages.push(img.nome)
       });
 
-      var storageRef = firebase.storage().ref('/pets');
+      var db = firebase.database().ref('pet').child(idUser);
+
+      let uid = db.push().key;
+      pet.id = uid;
+
+      db.child(uid).set(pet, function (error) {
+        if(!error)
+          console.log('Cadastrado com sucesso!');
+      });
+
+      var storage = firebase.storage().ref('pets').child(idUser);
       
       for (let i = 0; i < pet.pathImages.length; i++) {
-        var imagesRef = storageRef.child('/'+firebase.auth().currentUser.uid + '/'+imgs[i].nome);
+        var imagesRef = storage.child(imgs[i].nome);
 
         imagesRef.putString(imgs[i].arquivo).then(function(snapshot) {
           console.log('Uploaded a blob or file!');
@@ -88,6 +97,7 @@ $(function() {
             };
           })(f);
           reader.readAsDataURL(f);
+          $('#slide').carousel(0);
         }
     });
 

@@ -1,0 +1,27 @@
+.splash-container {
+    width: 100%;
+    max-width: 875px;
+    padding: 15px;
+    margin: auto;
+}
+
+.lado {
+    margin-left: 20%;
+}
+
+#slide{
+    width: 40%;
+    margin-left: 26%;
+}
+
+.esconder {
+    display: none;
+}
+
+.centralizar {
+    margin-left: 35%;
+}
+
+.fundo {
+    background: gray;
+}

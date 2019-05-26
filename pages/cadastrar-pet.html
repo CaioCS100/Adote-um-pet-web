@@ -1,231 +1,233 @@
-    <!DOCTYPE html>
-    <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="../assets/libs/css/style.css">
-        <link rel="stylesheet" href="../assets/libs/css/cadastrar-pet.css">
-        <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-        <title>Cadastrar Pet</title>
-    </head>
-    <body>
-        <div class="dashboard-main-wrapper">
-            <div class="dashboard-header">
-                <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                    <a class="navbar-brand" href="../index.html">Adote um Pet</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/libs/css/style.css">
+    <link rel="stylesheet" href="../assets/libs/css/cadastrar-pet.css">
+    <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <title>Cadastrar Pet</title>
+</head>
+<body>
+    <div class="dashboard-main-wrapper">
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="../index.html">Adote um Pet</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item">
+                            <div id="custom-search" class="top-search-bar">
+                                <input class="form-control" type="text" placeholder="Procurar...">
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown nav-user">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="../assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                                <div class="nav-user-info">
+                                    <h5 class="mb-0 text-white nav-user-name" id="nome" class="nome"></h5>
+                                </div>
+                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Conta</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Configurações</a>
+                                <a class="dropdown-item" href="#" id="deslogar"><i class="fas fa-power-off mr-2"></i>Sair</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto navbar-right-top">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">Menu</li>
                             <li class="nav-item">
-                                <div id="custom-search" class="top-search-bar">
-                                    <input class="form-control" type="text" placeholder="Procurar...">
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown nav-user">
-                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
-                                <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                    <div class="nav-user-info">
-                                        <h5 class="mb-0 text-white nav-user-name" id="nome" class="nome"></h5>
-                                    </div>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Conta</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Configurações</a>
-                                    <a class="dropdown-item" href="#" id="deslogar"><i class="fas fa-power-off mr-2"></i>Sair</a>
-                                </div>
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../index.html">Painel de Controle</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="cadastrar-pet.html">Cadastrar Animal</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Consultar Animal</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Mandar Notificações</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </div>
-            <div class="nav-left-sidebar sidebar-dark">
-                <div class="menu-list">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav flex-column">
-                                <li class="nav-divider">
-                                    Menu
-                                </li>
-                                <li class="nav-item">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../index.html">Painel de Controle</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="cadastrar-pet.html">Cadastrar Animal</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Consultar Animal</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Mandar Notificações</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-            <div class="dashboard-wrapper">
-                <div class="dashboard-ecommerce">
-                    <div class="container-fluid dashboard-content ">
-                        <div class="row">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="page-header">
-                                    <form>
+        </div>
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <form>
+                                    <div class="card">
                                         <div class="splash-container">
-                                            <div class="card-header text-center"><span class="splash-description">Cadastro de Pet</span></div>
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label text-sm-right" for="cachorro">Gênero do Pet:</label>
-                                                            <div class="col-sm-6">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control custom-radio">
-                                                                        <input name="tipoPet" type="radio" value="Cachorro" id="cachorro" class="custom-control-input"><span class="custom-control-label">Cachorro</span>
-                                                                    </label>
-                                                                    <label class="custom-control custom-radio">
-                                                                        <input name="tipoPet" type="radio" value="Gato" id="gato" class="custom-control-input"><span class="custom-control-label">Gato</span>
-                                                                    </label>
-                                                                    <div id="error-container1"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-12 col-sm-3 col-form-label text-sm-right" for="nomePet">Nome do Pet:</label>
-                                                            <div class="col-12 col-sm-8 col-lg-6">
-                                                                <input type="text" placeholder="Digite o nome do Pet" id="nomePet" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label text-sm-right" for="masculino">Sexo do Pet:</label>
-                                                            <div class="col-sm-6">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control custom-radio">
-                                                                        <input name="genero" type="radio" value="M" id="masculino" class="custom-control-input"><span class="custom-control-label">Masculino</span>
-                                                                    </label>
-                                                                    <label class="custom-control custom-radio">
-                                                                        <input name="genero" type="radio" value="F" id="feminino" class="custom-control-input"><span class="custom-control-label">Feminino</span>
-                                                                    </label>
-                                                                    <div id="error-container1"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-12 col-sm-3 col-form-label text-sm-right" for="idades">Idade do pet</label>
-                                                            <div class="col-12 col-sm-8 col-lg-6">
-                                                                <select id="idades" class="form-control">
-                                                                    <option value="none" selected>Escolha a faixa de idade do pet</option>
-                                                                    <option value="0 meses a 6 meses">De 0 meses a 6 meses</option>
-                                                                    <option value="6 meses a 1 ano">De 6 meses a 1 ano</option>
-                                                                    <option value="1 ano a 3 anos">De 1 ano a 3 anos</option>
-                                                                    <option value="3 anos a 5 anos">De 3 anos a 5 anos</option>
-                                                                    <option value="5 anos a 10 anos">De 5 anos a 10 anos</option>
-                                                                    <option value="superior a 10 anos">Superior a 10 anos</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-12 col-sm-3 col-form-label text-sm-right" for="telefone">Telefone:</label>
-                                                            <div class="col-12 col-sm-8 col-lg-6">
-                                                                <input type="text" required="" placeholder="Digite o telefone para contato" id="telefone" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-12 col-sm-3 col-form-label text-sm-right" for="estados">Estado</label>
-                                                            <div class="col-12 col-sm-8 col-lg-6">
-                                                                <select id="estados" class="form-control">
-                                                                    <option value="none" selected>Selecione um Estado</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-12 col-sm-3 col-form-label text-sm-right" for="cidades">Cidade</label>
-                                                            <div class="col-12 col-sm-8 col-lg-6">
-                                                                <select id="cidades" class="form-control">
-                                                                    <option value="none" selected>Selecione uma Cidade</option>
-                                                                </select>
-                                                            </div>
-                                                        </div class="form-group row">
-                                                            <label class="col-12 col-sm-3 col-form-label text-sm-right" for="files">Imagens</label>
-                                                            <input type="file" id="files" name="files[]" multiple>
-                                                            <div id="slide" class="carousel slide" data-ride="carousel">
-                                                                <div class="carousel-inner fundo">
-                                                                    <div id="div0" class="carousel-item active centralizar">
-                                                                        <img id="img0" src="../assets/icons/baseline_image_search_black_48dp.png" height="100px" width="100px" alt="Primeira Imagem">
-                                                                    </div>
-                                                                    <div id="div1" class="carousel-item centralizar">
-                                                                        <img id="img1" src="../assets/icons/baseline_image_search_black_48dp.png" height="100px" width="100px" alt="Segunda Imagem">
-                                                                    </div>
-                                                                    <div id="div2" class="carousel-item centralizar">
-                                                                    <img id="img2" src="../assets/icons/baseline_image_search_black_48dp.png" height="100px" width="100px" alt="Terceira Imagem">
-                                                                    </div>
-                                                                    <div id="div3" class="carousel-item centralizar">
-                                                                        <img id="img3" src="../assets/icons/baseline_image_search_black_48dp.png" height="100px" width="100px" alt="Quarta Imagem">
-                                                                    </div>
-                                                                    <div id="div4" class="carousel-item centralizar">
-                                                                        <img id="img4" src="../assets/icons/baseline_image_search_black_48dp.png" height="100px" width="100px" alt="Quinta Imagem">
-                                                                    </div>
-                                                                </div>
-                                                                <a class="carousel-control-prev" href="#slide" role="button" data-slide="prev">
-                                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                                    <span class="sr-only"></span>
-                                                                </a>
-                                                                <a class="carousel-control-next" href="#slide" role="button" data-slide="next">
-                                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                                    <span class="sr-only"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row text-right">
-                                                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
-                                                                <button type="submit" id="cadastrar" class="btn btn-space btn-primary">Cadastrar</button>
-                                                            </div>
-                                                        </div>
+                                            <div class="card-header text-center">
+                                                <span class="splash-description">Cadastro de Pet</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-sm-right" for="cachorro">Gênero do Pet:</label>
+                                                <div class="col-sm-6">
+                                                    <div class="custom-controls-stacked">
+                                                        <label class="custom-control custom-radio">
+                                                            <input name="tipoPet" type="radio" value="Cachorro" id="cachorro" class="custom-control-input"><span class="custom-control-label">Cachorro</span>
+                                                        </label>
+                                                        <label class="custom-control custom-radio">
+                                                            <input name="tipoPet" type="radio" value="Gato" id="gato" class="custom-control-input"><span class="custom-control-label">Gato</span>
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                Copyright © 2019 Adote um pet. Todos os direitos reservados.</div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <div class="text-md-right footer-links d-none d-sm-block">
-                                <a href="javascript: void(0);">Sobre</a>
-                                <a href="javascript: void(0);">Suporte</a>
-                                <a href="javascript: void(0);">Fala Conosco</a>
+                                            <div class="form-group row">
+                                                <label class="col-12 col-sm-3 col-form-label text-sm-right" for="nomePet">Nome do Pet:</label>
+                                                <div class="col-12 col-sm-8 col-lg-6">
+                                                    <input type="text" placeholder="Digite o nome do Pet" id="nomePet" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-sm-right" for="masculino">Sexo do Pet:</label>
+                                                <div class="col-sm-6">
+                                                    <div class="custom-controls-stacked">
+                                                        <label class="custom-control custom-radio">
+                                                            <input name="genero" type="radio" value="M" id="masculino" class="custom-control-input"><span class="custom-control-label">Masculino</span>
+                                                        </label>
+                                                        <label class="custom-control custom-radio">
+                                                            <input name="genero" type="radio" value="F" id="feminino" class="custom-control-input"><span class="custom-control-label">Feminino</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-12 col-sm-3 col-form-label text-sm-right" for="idades">Idade do pet</label>
+                                                <div class="col-12 col-sm-8 col-lg-6">
+                                                    <select id="idades" class="form-control">
+                                                        <option value="none" selected>Escolha a faixa de idade do pet</option>
+                                                        <option value="0 meses a 6 meses">De 0 meses a 6 meses</option>
+                                                        <option value="6 meses a 1 ano">De 6 meses a 1 ano</option>
+                                                        <option value="1 ano a 3 anos">De 1 ano a 3 anos</option>
+                                                        <option value="3 anos a 5 anos">De 3 anos a 5 anos</option>
+                                                        <option value="5 anos a 10 anos">De 5 anos a 10 anos</option>
+                                                        <option value="superior a 10 anos">Superior a 10 anos</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-12 col-sm-3 col-form-label text-sm-right" for="telefone">Telefone:</label>
+                                                <div class="col-12 col-sm-8 col-lg-6">
+                                                    <input type="text" required="" placeholder="Digite o telefone para contato" id="telefone" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-12 col-sm-3 col-form-label text-sm-right" for="estados">Estado</label>
+                                                <div class="col-12 col-sm-8 col-lg-6">
+                                                    <select id="estados" class="form-control">
+                                                        <option value="none" selected>Selecione um Estado</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-12 col-sm-3 col-form-label text-sm-right" for="cidades">Cidade</label>
+                                                <div class="col-12 col-sm-8 col-lg-6">
+                                                    <select id="cidades" class="form-control">
+                                                        <option value="none" selected>Selecione uma Cidade</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-12 col-sm-3 col-form-label text-sm-right" for="files">Imagens</label>
+                                                <input type="file" id="files" name="files[]" multiple>
+                                                <div id="slide" class="carousel slide" data-ride="carousel">
+                                                    <div class="carousel-inner fundo">
+                                                        <div id="div0" class="carousel-item active centralizar">
+                                                            <img id="img0" src="../assets/icons/baseline_image_search_black_48dp.png" height="100px" width="100px" alt="Primeira Imagem">
+                                                        </div>
+                                                        <div id="div1" class="carousel-item centralizar">
+                                                            <img id="img1" src="../assets/icons/baseline_image_search_black_48dp.png" height="100px" width="100px" alt="Segunda Imagem">
+                                                        </div>
+                                                        <div id="div2" class="carousel-item centralizar">
+                                                            <img id="img2" src="../assets/icons/baseline_image_search_black_48dp.png" height="100px" width="100px" alt="Terceira Imagem">
+                                                        </div>
+                                                        <div id="div3" class="carousel-item centralizar">
+                                                            <img id="img3" src="../assets/icons/baseline_image_search_black_48dp.png" height="100px" width="100px" alt="Quarta Imagem">
+                                                        </div>
+                                                        <div id="div4" class="carousel-item centralizar">
+                                                            <img id="img4" src="../assets/icons/baseline_image_search_black_48dp.png" height="100px" width="100px" alt="Quinta Imagem">
+                                                        </div>
+                                                    </div>
+                                                    <a class="carousel-control-prev" href="#slide" role="button" data-slide="prev">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only"></span>
+                                                    </a>
+                                                    <a class="carousel-control-next" href="#slide" role="button" data-slide="next">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row text-right">
+                                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                                <button type="submit" id="cadastrar" class="btn btn-space btn-primary">Cadastrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        Copyright © 2019 Adote um pet. Todos os direitos reservados.
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript: void(0);">Sobre</a>
+                            <a href="javascript: void(0);">Suporte</a>
+                            <a href="javascript: void(0);">Fala Conosco</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-    </body>
-    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="../assets/vendor/inputmask/js/jquery.inputmask.bundle.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
-    <script src="../assets/libs/js/connectionFactory.js"></script>
-    <script src="../assets/libs/js/util.js"></script>
-    <script src="../assets/libs/js/dashboard.js"></script>
-    <script src="../assets/libs/js/cadastrar-pet.js"></script>
-    </html>
+        </div>
+    </div>
+</body>
+<script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="../assets/vendor/inputmask/js/jquery.inputmask.bundle.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+<script src="../assets/libs/js/connectionFactory.js"></script>
+<script src="../assets/libs/js/util.js"></script>
+<script src="../assets/libs/js/dashboard.js"></script>
+<script src="../assets/libs/js/cadastrar-pet.js"></script>
+</html>

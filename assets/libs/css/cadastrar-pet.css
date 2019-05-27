@@ -34,3 +34,17 @@
 .invalido{ 
     border: solid 3px red;
 }
+
+/*Animação para aparecer e esconder a mensagem de cadastrado com sucesso */
+@keyframes hide {
+    from { opacity: 1 }
+    to   { opacity: 0 }
+}
+
+.temporario{
+    position: absolute;
+    top: 80px;
+    width: 97%;
+    animation: hide 2s 2s forwards;
+    z-index: 1;
+}

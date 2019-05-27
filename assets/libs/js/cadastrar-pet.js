@@ -49,6 +49,8 @@ $(function() {
             console.log('Uploaded a blob or file!');
           });
         }
+        $("#alert").removeClass("esconder");
+        $( "#nomePet" ).focus();
         limparCampos();
       }
     });
@@ -108,7 +110,18 @@ $(function() {
 
     function limparCampos()
     {
-      //falta fazer
+      $('#formulario').trigger("reset");
+      // document.querySelector('form').reset();
+      var texto = ['Primeira Imagem', 'Segunda Imagem', 'Terceira Imagem', 'Quarta Imagem', 'Quinta Imagem']
+      for (let index = 0; index < 5; index++) 
+      {
+        $("#img"+index).attr("src", '../assets/icons/baseline_image_search_black_48dp.png');
+        $("#img"+index).attr("alt", texto[index]);
+        $("#img"+index).attr("height", "100px");
+        $("#img"+index).attr("width", "100px");
+        $("#img"+index).removeClass("d-block w-100");
+        $("#div"+index).addClass("centralizar");
+      }
     }
 
     function zerarCidades()

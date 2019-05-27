@@ -14,6 +14,88 @@ function sair()
       });
 }
 
+function validarPet(pet)
+{
+  $("#nomeObr").addClass("esconder");
+  $("#nomePet").removeClass("is-invalid");
+
+  $("#generoObr").addClass("esconder");
+  $("#gato").removeClass("is-invalid");
+  $("#cachorro").removeClass("is-invalid");
+
+  $("#sexoObr").addClass("esconder");
+  $("#masculino").removeClass("is-invalid");
+  $("#feminino").removeClass("is-invalid");
+
+  $("#idadeObr").addClass("esconder");
+  $("#idades").removeClass("is-invalid");
+
+  $("#telefoneObr").addClass("esconder");
+  $("#telefone").removeClass("is-invalid");
+
+  $("#estadoObr").addClass("esconder");
+  $("#estados").removeClass("is-invalid");
+
+  $("#cidadeObr").addClass("esconder");
+  $("#cidades").removeClass("is-invalid");
+
+  $("#imgObr").addClass("esconder");
+  $("#slide").removeClass("invalido");
+
+  var validado = true;
+  if (!pet.nome || pet.nome === '') 
+  {
+    validado = false;
+    $("#nomeObr").removeClass("esconder");
+    $("#nomePet").addClass("is-invalid");
+  }
+  if (!pet.genero || pet.genero === '')
+  {
+    validado = false;
+    $("#generoObr").removeClass("esconder");
+    $("#gato").addClass("is-invalid");
+    $("#cachorro").addClass("is-invalid");
+  }
+  if (!pet.sexo || pet.sexo === '')
+  {
+    validado = false;
+    $("#sexoObr").removeClass("esconder");
+    $("#masculino").addClass("is-invalid");
+    $("#feminino").addClass("is-invalid");
+  }
+  if (pet.idade === 'none')
+  {
+    validado = false;
+    $("#idadeObr").removeClass("esconder");
+    $("#idades").addClass("is-invalid");
+  }
+  if (!pet.telefone || pet.telefone === '') 
+  {
+    validado = false;
+    $("#telefoneObr").removeClass("esconder");
+    $("#telefone").addClass("is-invalid");
+  }
+  if (pet.estado === 'none')
+  {
+    validado = false;
+    $("#estadoObr").removeClass("esconder");
+    $("#estados").addClass("is-invalid");
+  }
+  if (pet.cidade === 'none')
+  {
+    validado = false;
+    $("#cidadeObr").removeClass("esconder");
+    $("#cidades").addClass("is-invalid");
+  }
+  if(pet.pathImages.length < 3)
+  {
+    validado = false;
+    $("#imgObr").removeClass("esconder");
+    $("#slide").addClass("invalido");
+  }
+
+  return validado;
+}
 
 function getBrasil()
 {

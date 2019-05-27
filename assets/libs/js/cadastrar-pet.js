@@ -14,12 +14,12 @@ $(function() {
         cidade: $("#cidades").val(),
         data_envio: today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(),
         estado: $("#estados").val(),
-        genero: $("input[name='tipoPet']:checked").val(),
+        genero: $("input[name='genero']:checked").val(),
         id: '',
         idade: $("#idades").val(),
         nome: $("#nomePet").val(),
         pathImages: [],
-        sexo: $("input[name='genero']:checked").val(),
+        sexo: $("input[name='sexo']:checked").val(),
         telefone: $("#telefone").val(),
       };
 
@@ -27,24 +27,29 @@ $(function() {
         pet.pathImages.push(img.nome)
       });
 
-      var db = firebase.database().ref('pet').child(idUser);
+      if(validarPet(pet))
+      {
+        var db = firebase.database().ref('pet').child(idUser);
 
-      let uid = db.push().key;
-      pet.id = uid;
-
-      db.child(uid).set(pet, function (error) {
-        if(!error)
-          console.log('Cadastrado com sucesso!');
-      });
-
-      var storage = firebase.storage().ref('pets').child(idUser);
-      
-      for (let i = 0; i < pet.pathImages.length; i++) {
-        var imagesRef = storage.child(imgs[i].nome);
-
-        imagesRef.putString(imgs[i].arquivo).then(function(snapshot) {
-          console.log('Uploaded a blob or file!');
+        let uid = db.push().key;
+        pet.id = uid;
+  
+        db.child(uid).set(pet, function (error) {
+          if(!error)
+            console.log('Cadastrado com sucesso!');
         });
+  
+        var storage = firebase.storage().ref('pets').child(idUser);
+        
+        for (let i = 0; i < pet.pathImages.length; i++) 
+        {
+          var imagesRef = storage.child(imgs[i].nome);
+  
+          imagesRef.putString(imgs[i].arquivo).then(function(snapshot) {
+            console.log('Uploaded a blob or file!');
+          });
+        }
+        limparCampos();
       }
     });
 
@@ -101,12 +106,14 @@ $(function() {
         }
     });
 
+    function limparCampos()
+    {
+      //falta fazer
+    }
+
     function zerarCidades()
     {
       $("#cidades option").remove();
-      var newOpction = $(document.createElement('option'));
-      newOpction.before().html(`<option value="none" selected>Selecione uma Cidade</option>`);
-      newOpction.appendTo("#cidades");
-      
+      $("#cidades").append(new Option('Selecione uma Cidade', 'none', true, true));
     }
 });

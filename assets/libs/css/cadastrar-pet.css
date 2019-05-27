@@ -12,6 +12,7 @@
 #slide{
     width: 40%;
     margin-left: 26%;
+    margin-top: 1%;
 }
 
 .esconder {
@@ -24,4 +25,12 @@
 
 .fundo {
     background: gray;
+}
+
+.ladoObr{
+    margin-left: 25%;
+}
+
+.invalido{ 
+    border: solid 3px red;
 }

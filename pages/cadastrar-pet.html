@@ -92,11 +92,14 @@
                                                 <div class="col-sm-6">
                                                     <div class="custom-controls-stacked">
                                                         <label class="custom-control custom-radio">
-                                                            <input name="tipoPet" type="radio" value="Cachorro" id="cachorro" class="custom-control-input"><span class="custom-control-label">Cachorro</span>
+                                                            <input name="genero" type="radio" value="Cachorro" id="cachorro" class="custom-control-input"><span class="custom-control-label">Cachorro</span>
                                                         </label>
                                                         <label class="custom-control custom-radio">
-                                                            <input name="tipoPet" type="radio" value="Gato" id="gato" class="custom-control-input"><span class="custom-control-label">Gato</span>
+                                                            <input name="genero" type="radio" value="Gato" id="gato" class="custom-control-input"><span class="custom-control-label">Gato</span>
                                                         </label>
+                                                        <div id="generoObr" class="esconder" style="color: red;">
+                                                            Selecione uma opção do gênero do pet
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,6 +107,9 @@
                                                 <label class="col-12 col-sm-3 col-form-label text-sm-right" for="nomePet">Nome do Pet:</label>
                                                 <div class="col-12 col-sm-8 col-lg-6">
                                                     <input type="text" placeholder="Digite o nome do Pet" id="nomePet" class="form-control">
+                                                    <div id="nomeObr" class="esconder" style="color: red;">
+                                                        Digite um nome válido.
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -111,11 +117,14 @@
                                                 <div class="col-sm-6">
                                                     <div class="custom-controls-stacked">
                                                         <label class="custom-control custom-radio">
-                                                            <input name="genero" type="radio" value="M" id="masculino" class="custom-control-input"><span class="custom-control-label">Masculino</span>
+                                                            <input name="sexo" type="radio" value="M" id="masculino" class="custom-control-input"><span class="custom-control-label">Masculino</span>
                                                         </label>
                                                         <label class="custom-control custom-radio">
-                                                            <input name="genero" type="radio" value="F" id="feminino" class="custom-control-input"><span class="custom-control-label">Feminino</span>
+                                                            <input name="sexo" type="radio" value="F" id="feminino" class="custom-control-input"><span class="custom-control-label">Feminino</span>
                                                         </label>
+                                                        <div id="sexoObr" class="esconder" style="color: red;">
+                                                            Selecione uma opção do sexo do pet
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -131,12 +140,18 @@
                                                         <option value="5 anos a 10 anos">De 5 anos a 10 anos</option>
                                                         <option value="superior a 10 anos">Superior a 10 anos</option>
                                                     </select>
+                                                    <div id="idadeObr" class="esconder" style="color: red;">
+                                                        Selecione uma idade
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-12 col-sm-3 col-form-label text-sm-right" for="telefone">Telefone:</label>
                                                 <div class="col-12 col-sm-8 col-lg-6">
                                                     <input type="text" required="" placeholder="Digite o telefone para contato" id="telefone" class="form-control">
+                                                    <div id="telefoneObr" class="esconder" style="color: red;">
+                                                        Digite um telefone válido.
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -145,6 +160,9 @@
                                                     <select id="estados" class="form-control">
                                                         <option value="none" selected>Selecione um Estado</option>
                                                     </select>
+                                                    <div id="estadoObr" class="esconder" style="color: red;">
+                                                        Selecione um estado
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -153,10 +171,13 @@
                                                     <select id="cidades" class="form-control">
                                                         <option value="none" selected>Selecione uma Cidade</option>
                                                     </select>
+                                                    <div id="cidadeObr" class="esconder" style="color: red;">
+                                                        Selecione uma cidade
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-form-label text-sm-right" for="files">Imagens</label>
+                                                <label class="col-12 col-sm-3  text-sm-right" for="files">Imagens</label>
                                                 <input type="file" id="files" name="files[]" multiple>
                                                 <div id="slide" class="carousel slide" data-ride="carousel">
                                                     <div class="carousel-inner fundo">
@@ -185,6 +206,9 @@
                                                         <span class="sr-only"></span>
                                                     </a>
                                                 </div>
+                                            </div>
+                                            <div id="imgObr" class="ladoObr esconder" style="color: red;">
+                                                Selecione Pelo menos 3 fotos
                                             </div>
                                         </div>
                                         <div class="form-group row text-right">

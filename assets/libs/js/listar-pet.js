@@ -7,11 +7,12 @@ $(function(){
                 snap.forEach(pet => {
                     dados.push([pet.val().nome, pet.val().sexo, pet.val().genero, 
                         pet.val().estado, pet.val().cidade,
-                        '<button type="button" data-id="'+pet.nome+'" class="btn-visualizar btn btn-light">Visualizar</button>']);
+                        '<button type="button" data-id="'+pet.val().id+'"+ class="btn-visualizar btn btn-light">Visualizar</button>',
+                        pet.val().id]);
                 })
             })
 
-            $('#petTable').DataTable( {
+            tablePet = $('#petTable').DataTable( {
                 data: dados,
                 columns: [
                     { title: "Nome" },
@@ -24,5 +25,10 @@ $(function(){
                 language: getConfiguracaoTabela()
             });
         });
+    });
+
+    $('#petTable').on('click', 'button', function () {
+        var idPet = tablePet.row($(this).parents('tr')).data()[6];
+        window.location.href="visualizar-pet.html?id=" + idPet;
     });
 });

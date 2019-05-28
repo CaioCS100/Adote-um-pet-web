@@ -97,6 +97,34 @@ function validarPet(pet)
   return validado;
 }
 
+function getConfiguracaoTabela()
+{
+    return configLang = {
+        "decimal": "",
+        "emptyTable": "Nenhum dado na tabela.",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_",
+        "infoEmpty": "Mostrando 0 para 0 de 0 entradas",
+        "infoFiltered": "(filtrando por _MAX_ entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ entradas",
+        "loadingRecords": "Carregando...",
+        "processing": "Processando...",
+        "search": "Pesquisar:",
+        "zeroRecords": "Nenhum registro encontrado.",
+        "paginate": {
+            "first": "Primeiro",
+            "last": "Último",
+            "next": "Próximo",
+            "previous": "Anterior"
+        },
+        "aria": {
+            "sortAscending": ": ativar para classificar coluna ascendente",
+            "sortDescending": ": ativar para classificar coluna descendente"
+        }
+    };
+}
+
 function getBrasil()
 {
   return  [{

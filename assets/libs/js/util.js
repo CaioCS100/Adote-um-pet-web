@@ -14,7 +14,7 @@ function sair()
       });
 }
 
-function validarPet(pet)
+function validarPet(pet, numeroFotosFirebase)
 {
   $("#nomeObr").addClass("esconder");
   $("#nomePet").removeClass("is-invalid");
@@ -87,7 +87,7 @@ function validarPet(pet)
     $("#cidadeObr").removeClass("esconder");
     $("#cidades").addClass("is-invalid");
   }
-  if(pet.pathImages.length < 3)
+  if(pet.pathImages.length + numeroFotosFirebase < 3)
   {
     validado = false;
     $("#imgObr").removeClass("esconder");

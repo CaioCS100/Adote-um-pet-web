@@ -28,7 +28,7 @@ $(function() {
       pet.pathImages.push(img.nome)
     });
 
-    if(validarPet(pet))
+    if(validarPet(pet, 0))
     {
       var db = firebase.database().ref('pet').child(idUser);
 

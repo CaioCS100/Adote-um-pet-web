@@ -3,6 +3,7 @@ $(function(){
     $("#telefone").inputmask("(99) 99999-9999");
     var brasil = getBrasil();
     var nameImagesFirebase = [];
+    var deletedImagesFirebase = [];
     var imgs = [];
     var chave;
     var idUsuario;
@@ -30,16 +31,16 @@ $(function(){
                 snapshot1.forEach(snap => {
                     if(snap.val().id === idPet)
                     {
-                        idUsuario = snap.val().id;
-                        $('#nomePet').val(snap.val().nome);
-                        snap.val().nome === 'Cachorro' ? $('#cachorro').prop("checked", true) : $('#gato').prop("checked", true);
-                        snap.val().sexo === 'M' ? $('#masculino').prop("checked", true) : $('#feminino').prop("checked", true);
-                        $('#idades').val(snap.val().idade);
-                        $('#telefone').val(snap.val().telefone);
-                        $('#estados').val(snap.val().estado);
-                        getCidade(snap.val().estado);
-                        $('#cidades').val(snap.val().cidade);
-                        putImages(snap.val().pathImages, snap.val().id);
+                      idUsuario = snap.val().id;
+                      $('#nomePet').val(snap.val().nome);
+                      snap.val().nome === 'Cachorro' ? $('#cachorro').prop("checked", true) : $('#gato').prop("checked", true);
+                      snap.val().sexo === 'M' ? $('#masculino').prop("checked", true) : $('#feminino').prop("checked", true);
+                      $('#idades').val(snap.val().idade);
+                      $('#telefone').val(snap.val().telefone);
+                      $('#estados').val(snap.val().estado);
+                      getCidade(snap.val().estado);
+                      $('#cidades').val(snap.val().cidade);
+                      putImages(snap.val().pathImages, snap.val().id);
                     }
                 });
             });
@@ -68,7 +69,7 @@ $(function(){
       imgs.forEach(function (img){
         pet.pathImages.push(img.nome);
       });
-
+      
       if(validarPet(pet, countImages))
       {
         var db = firebase.database().ref('pet').child(chave);
@@ -78,27 +79,52 @@ $(function(){
             console.log(error);
         }).then(doc => {
           
-          var storage = firebase.storage().ref('pets').child(pet.id);
-          var promises = [];
+        var storage = firebase.storage().ref('pets').child(pet.id);
+        var promises = [];
   
-          for (let i = 0; i < pet.pathImages.length - countImages; i++) 
-          {
-            var imagesRef = storage.child(imgs[i].nome);
-            
-            promises.push(imagesRef.put(imgs[i].arquivo));
-          }
-  
-          Promise.all(promises).then(() => {
-            //retornar para a pagina de procura e colocar um aviso de editado com sucesso
-            //verificar se existe algum bug na hora que edito o estado, 
-            //verificar se as cidades vem certo
-            //colocar o botao de apagar imgs
-            console.log('feito');
-          });
+        for (let i = 0; i < pet.pathImages.length - countImages; i++) 
+        {
+          var imagesRef = storage.child(imgs[i].nome);
+          promises.push(imagesRef.put(imgs[i].arquivo));
+        }
+
+        deletedImagesFirebase.map(function (img) {
+          promises.push(storage.child(img).delete());
+        });
+
+        Promise.all(promises).then(() => {
+          //1 para editado
+          //2 para excluido
+          window.location.href="listar-pet.html?editedOrDeleted=1";    
+        });
           
         });
       }
     })
+
+    $('#excluir').click(function(evt) {
+      if(window.confirm("Tem certeza que deseja excluir esse Pet?"))
+      {
+        console.log(nameImagesFirebase);
+        
+        var db = firebase.database().ref('pet').child(chave);
+  
+        db.child(idUsuario).remove().then(result => {
+          var storage = firebase.storage().ref('pets').child(idUsuario);
+          var promises = [];
+
+          nameImagesFirebase.map(function (img) {
+            promises.push(storage.child(img).delete());
+          });
+
+          Promise.all(promises).then(() => {
+            //1 para editado
+            //2 para excluido
+            window.location.href="listar-pet.html?editedOrDeleted=2";    
+          });
+        })
+      }
+    });
 
     $('#voltar').click(function(evt) {
         window.location.href="listar-pet.html";
@@ -106,6 +132,7 @@ $(function(){
 
     $('#btnEditar').click(function(evt) {
         $("#editar").removeClass("esconder");
+        $('#excluir').attr('disabled', true);
         $("#btnEditar").addClass("esconder");
         EnableAndDisableInputs(false);
     });
@@ -114,48 +141,81 @@ $(function(){
         $("#estados").append(new Option(estado.nome, estado.sigla, false, false));
       });
 
+    $("#estados").change(function (evt) {
+      zerarCidades();
+      brasil.map(function(cidades) {
+        if($("#estados").val() == cidades.sigla)
+        {
+          zerarCidades();
+          cidades.cidades.map(function(cidade) {
+            $("#cidades").append(new Option(cidade, cidade, false, false));
+          });
+        }
+      });
+    });
+
+    $("#reset").click(function (evt) {
+      nameImagesFirebase.forEach(function (img) {
+        deletedImagesFirebase.push(img);
+      });
+      imgs = [];
+      nameImagesFirebase = [];
+      fotos = [];
+      countImages = 0;
+      var legenda = ['Primeira Imagem', 'Segunda Imagem', 'Terceira Imagem', 'Quarta Imagem', 'Quinta Imagem']
+      for (let index = 0; index < 5; index++) 
+      {
+        $("#img"+index).attr("src", '../assets/icons/baseline_image_search_black_48dp.png');
+        $("#img"+index).attr("alt", legenda[index]);
+        $("#img"+index).attr("height", "100px");
+        $("#img"+index).attr("width", "100px");
+        $("#img"+index).removeClass("d-block w-100");
+        $("#div"+index).addClass("centralizar");
+      }
+    });
+
     $("#files").change(function (evt) {
-        var files = evt.target.files;
+      var files = evt.target.files;
         
-        if (countImages + fotos.length + files.length > 5)
-        {
-          $('#imgObr').text('O valor maximo permitido são de 5 imagens.')
-          return $('#imgObr').removeClass('esconder');
-        }
-        else 
-        {
-          $('#imgObr').text('Selecione Pelo menos 3 fotos')
-          $('#imgObr').addClass('esconder');
-        }
+      if (countImages + fotos.length + files.length > 5)
+      {
+        $('#imgObr').text('O valor maximo permitido são de 5 imagens.')
+        return $('#imgObr').removeClass('esconder');
+      }
+      else 
+      {
+        $('#imgObr').text('Selecione Pelo menos 3 fotos')
+        $('#imgObr').addClass('esconder');
+      }
     
-        for (var i = 0, f; f = files[i]; i++) 
-        {
-          if (!f.type.match('image.*'))
-            continue;
+      for (var i = 0, f; f = files[i]; i++) 
+      {
+        if (!f.type.match('image.*'))
+          continue;
   
-          var img = {
-            nome: f.name,
-            arquivo: f, 
-            hasImg: true
-          };
+        var img = {
+          nome: f.name,
+          arquivo: f, 
+          hasImg: true
+        };
   
-          imgs.push(img);
+        imgs.push(img);
           
-          var reader = new FileReader();
+        var reader = new FileReader();
   
-          reader.onload = (function(theFile) {
-            return function(e) {
-              fotos.push(e.target.result);
-              for (let index = 0; index < imgs.length; index++) 
-              {
-                $("#img"+(countImages + index)).attr("src", fotos[index]);
-                $("#img"+(countImages + index)).attr("alt", imgs[index].nome);
-                $("#img"+(countImages + index)).attr("height", "250px");
-                $("#img"+(countImages + index)).attr("width", "250px");
-                $("#div"+(countImages + index)).removeClass("centralizar");
-                $("#img"+(countImages + index)).addClass("d-block w-100");
-              }
-            };
+        reader.onload = (function(theFile) {
+          return function(e) {
+            fotos.push(e.target.result);
+            for (let index = 0; index < imgs.length; index++) 
+            {
+              $("#img"+(countImages + index)).attr("src", fotos[index]);
+              $("#img"+(countImages + index)).attr("alt", imgs[index].nome);
+              $("#img"+(countImages + index)).attr("height", "250px");
+              $("#img"+(countImages + index)).attr("width", "250px");
+              $("#div"+(countImages + index)).removeClass("centralizar");
+              $("#img"+(countImages + index)).addClass("d-block w-100");
+            }
+          };
           })(f);
           reader.readAsDataURL(f);
           $('#slide').carousel(0);
@@ -168,32 +228,32 @@ $(function(){
       
       for (let index = 0; index < countImages; index++) 
       {
-          nameImagesFirebase.push(imgs[index]);
-          firebase.storage().ref('pets').child(id).child(imgs[index]).getDownloadURL().then(url => {
-              $("#img"+index).attr("src", url);
-              $("#img"+index).attr("alt", imgs[index]);
-              $("#img"+index).attr("height", "250px");
-              $("#img"+index).attr("width", "250px");
-              $("#div"+index).removeClass("centralizar");
-              $("#img"+index).addClass("d-block w-100");
-          }).catch(erro => {
-              console.log(erro);
-          });
+        nameImagesFirebase.push(imgs[index]);
+        firebase.storage().ref('pets').child(id).child(imgs[index]).getDownloadURL().then(url => {
+            $("#img"+index).attr("src", url);
+            $("#img"+index).attr("alt", imgs[index]);
+            $("#img"+index).attr("height", "250px");
+            $("#img"+index).attr("width", "250px");
+            $("#div"+index).removeClass("centralizar");
+            $("#img"+index).addClass("d-block w-100");
+        }).catch(erro => {
+            console.log(erro);
+        });
       }
       $('#slide').carousel(0);
     }
 
     function getCidade(estadoSelecionado)
     {
-        brasil.map(function(estado) {
-            if(estadoSelecionado == estado.sigla)
-            {
-              zerarCidades();
-              estado.cidades.map(function(cidade) {
-                $("#cidades").append(new Option(cidade, cidade, false, false));
-             });
-            }
+      brasil.map(function(estado) {
+        if(estadoSelecionado == estado.sigla)
+        {
+          zerarCidades();
+          estado.cidades.map(function(cidade) {
+          $("#cidades").append(new Option(cidade, cidade, false, false));
           });
+        }
+      });
     }
 
     function zerarCidades()
@@ -204,15 +264,16 @@ $(function(){
 
     function EnableAndDisableInputs(value)
     {
-        $('#nomePet').attr('disabled', value);
-        $('#cachorro').attr('disabled', value);
-        $('#gato').attr('disabled', value);
-        $('#masculino').attr('disabled', value);
-        $('#feminino').attr('disabled', value);
-        $('#idades').attr('disabled', value);
-        $('#telefone').attr('disabled', value);
-        $('#estados').attr('disabled', value);
-        $('#cidades').attr('disabled', value);
-        $('#files').attr('disabled', value);
+      $('#nomePet').attr('disabled', value);
+      $('#cachorro').attr('disabled', value);
+      $('#gato').attr('disabled', value);
+      $('#masculino').attr('disabled', value);
+      $('#feminino').attr('disabled', value);
+      $('#idades').attr('disabled', value);
+      $('#telefone').attr('disabled', value);
+      $('#estados').attr('disabled', value);
+      $('#cidades').attr('disabled', value);
+      $('#reset').attr('disabled', value);
+      $('#files').attr('disabled', value);
     }
 });

@@ -7,6 +7,7 @@
     <link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/libs/css/style.css">
     <link rel="stylesheet" href="../assets/libs/css/cadastrar-pet.css">
+    <link rel="stylesheet" href="../assets/libs/css/visualizar-pet.css">
     <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <title>Cadastrar Pet</title>
 </head>
@@ -87,9 +88,6 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <div id="alert" class="alert alert-success temporario esconder" role="alert">
-                                                    <strong>Cadastro de Pet realizado com sucesso!</strong>
-                                            </div>
                                             <div class="form-group row">
                                                 <label class="col-12 col-sm-3 col-form-label text-sm-right" for="nomePet">Nome do Pet:</label>
                                                 <div class="col-12 col-sm-8 col-lg-6">
@@ -182,6 +180,7 @@
                                             <div class="form-group row">
                                                 <label class="col-12 col-sm-3  text-sm-right" for="files">Imagens</label>
                                                 <input type="file" id="files" name="files[]" multiple>
+                                                <button type="button" class="resetButton" id="reset">Limpar Imagens</button>
                                                 <div id="slide" class="carousel slide" data-ride="carousel">
                                                     <div class="carousel-inner fundo">
                                                         <div id="div0" class="carousel-item active centralizar">

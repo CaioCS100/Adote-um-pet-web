@@ -25,6 +25,23 @@ $(function(){
                 language: getConfiguracaoTabela()
             });
         });
+
+        $.urlParam = function (name) {
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.search);
+        
+            return (results !== null) ? results[1] || 0 : false;
+        }
+        if ($.urlParam('editedOrDeleted') == 1)
+        {
+            $('#alert').removeClass('esconder');
+            $('#alert').text('Pet Editado com sucesso!')
+        }
+        else if ($.urlParam('editedOrDeleted') == 2)
+        {
+            $('#alert').removeClass('esconder');
+            $('#alert').text('Pet Excluido com sucesso!')
+        }
+            
     });
 
     $('#petTable').on('click', 'button', function () {

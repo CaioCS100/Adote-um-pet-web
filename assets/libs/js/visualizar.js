@@ -86,7 +86,10 @@ $(function(){
         {
           var imagesRef = storage.child(imgs[i].nome);
           promises.push(imagesRef.put(imgs[i].arquivo));
+          verificarSemelhancaFotos(imgs[i].nome);
         }
+       
+        deletedImagesFirebase = verificarNomesIguaisFotosParaApagar(deletedImagesFirebase);
 
         deletedImagesFirebase.map(function (img) {
           promises.push(storage.child(img).delete());
@@ -105,13 +108,13 @@ $(function(){
     $('#excluir').click(function(evt) {
       if(window.confirm("Tem certeza que deseja excluir esse Pet?"))
       {
-        console.log(nameImagesFirebase);
-        
         var db = firebase.database().ref('pet').child(chave);
   
         db.child(idUsuario).remove().then(result => {
           var storage = firebase.storage().ref('pets').child(idUsuario);
           var promises = [];
+
+          nameImagesFirebase = verificarNomesIguaisFotosParaApagar(nameImagesFirebase);
 
           nameImagesFirebase.map(function (img) {
             promises.push(storage.child(img).delete());
@@ -198,9 +201,9 @@ $(function(){
           arquivo: f, 
           hasImg: true
         };
-  
+
         imgs.push(img);
-          
+
         var reader = new FileReader();
   
         reader.onload = (function(theFile) {
@@ -221,6 +224,22 @@ $(function(){
           $('#slide').carousel(0);
         }
     });
+
+    function verificarNomesIguaisFotosParaApagar(arrayImgs)
+    {
+      return arrayImgs.filter(function(img, indice) {
+        return arrayImgs.indexOf(img) === indice;
+      });
+    }
+
+    function verificarSemelhancaFotos(img)
+    {
+      for (let i = 0; i < deletedImagesFirebase.length; i++) 
+      {
+        if (img == deletedImagesFirebase[i])
+          deletedImagesFirebase.splice(i, 1);
+      }
+    }
 
     function putImages(imgs, id)
     {

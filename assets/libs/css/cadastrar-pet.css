@@ -48,3 +48,7 @@
     animation: hide 2s 2s forwards;
     z-index: 1;
 }
+
+.resetButton {
+    margin-left: 1%;
+}

@@ -113,20 +113,31 @@ $(function() {
       }
   });
 
-  function limparCampos()
+  $("#limparImgs").click(function (evt) {
+    imgs = [];
+    fotos = [];
+    resetImages();
+  });
+
+  function resetImages()
   {
-    $('#formulario').trigger("reset");
-    // document.querySelector('form').reset();
-    var texto = ['Primeira Imagem', 'Segunda Imagem', 'Terceira Imagem', 'Quarta Imagem', 'Quinta Imagem']
+    var legenda = ['Primeira Imagem', 'Segunda Imagem', 'Terceira Imagem', 'Quarta Imagem', 'Quinta Imagem']
     for (let index = 0; index < 5; index++) 
     {
       $("#img"+index).attr("src", '../assets/icons/baseline_image_search_black_48dp.png');
-      $("#img"+index).attr("alt", texto[index]);
+      $("#img"+index).attr("alt", legenda[index]);
       $("#img"+index).attr("height", "100px");
       $("#img"+index).attr("width", "100px");
       $("#img"+index).removeClass("d-block w-100");
       $("#div"+index).addClass("centralizar");
     }
+  }
+
+  function limparCampos()
+  {
+    $('#formulario').trigger("reset");
+    // document.querySelector('form').reset();
+    resetImages();
   }
 
   function zerarCidades()

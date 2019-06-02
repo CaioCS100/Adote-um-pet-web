@@ -2,10 +2,8 @@ $(function() {
   $("#telefone").inputmask("(99) 99999-9999");
 
   var imgs = [];
-  // var img = {nome: '', arquivo: '', hasImg: false};
   var brasil = getBrasil();
   var today = new Date();
-  var fotos = [];
 
   $("#cadastrar").click(function (evt) {
     evt.preventDefault();
@@ -46,7 +44,7 @@ $(function() {
         {
           var imagesRef = storage.child(imgs[i].nome);
           
-          promises.push(imagesRef.put(imgs[i].arquivo));
+          promises.push(imagesRef.putString(imgs[i].url, 'data_url'));
         }
 
         Promise.all(promises).then(() => {
@@ -83,23 +81,22 @@ $(function() {
       {
         if (!f.type.match('image.*'))
           continue;
-
-        var img = {
-          nome: f.name,
-          arquivo: f, 
-          hasImg: true
-        };
-
-        imgs.push(img);
         
         var reader = new FileReader();
 
         reader.onload = (function(theFile) {
           return function(e) {
-            fotos.push(e.target.result)
+            var img = {
+              nome: escape(theFile.name),
+              url: e.target.result,
+              hasImg: true
+            };
+    
+            imgs.push(img);
+
             for (let index = 0; index < imgs.length; index++) 
             {
-              $("#img"+index).attr("src", fotos[index]);
+              $("#img"+index).attr("src", imgs[index].url);
               $("#img"+index).attr("alt", imgs[index].nome);
               $("#img"+index).attr("height", "250px");
               $("#img"+index).attr("width", "250px");

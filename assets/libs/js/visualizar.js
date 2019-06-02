@@ -7,7 +7,6 @@ $(function(){
     var imgs = [];
     var chave;
     var idUsuario;
-    var fotos = [];
     var countImages = 0;
 
     $.urlParam = function (name) {
@@ -85,7 +84,7 @@ $(function(){
         for (let i = 0; i < pet.pathImages.length - countImages; i++) 
         {
           var imagesRef = storage.child(imgs[i].nome);
-          promises.push(imagesRef.put(imgs[i].arquivo));
+          promises.push(imagesRef.putString(imgs[i].url, 'data_url'));
           verificarSemelhancaFotos(imgs[i].nome);
         }
        
@@ -163,7 +162,6 @@ $(function(){
       });
       imgs = [];
       nameImagesFirebase = [];
-      fotos = [];
       countImages = 0;
       var legenda = ['Primeira Imagem', 'Segunda Imagem', 'Terceira Imagem', 'Quarta Imagem', 'Quinta Imagem']
       for (let index = 0; index < 5; index++) 
@@ -180,7 +178,7 @@ $(function(){
     $("#files").change(function (evt) {
       var files = evt.target.files;
         
-      if (countImages + fotos.length + files.length > 5)
+      if (countImages + files.length > 5)
       {
         $('#imgObr').text('O valor maximo permitido são de 5 imagens.')
         return $('#imgObr').removeClass('esconder');
@@ -195,23 +193,21 @@ $(function(){
       {
         if (!f.type.match('image.*'))
           continue;
-  
-        var img = {
-          nome: f.name,
-          arquivo: f, 
-          hasImg: true
-        };
-
-        imgs.push(img);
 
         var reader = new FileReader();
   
         reader.onload = (function(theFile) {
           return function(e) {
-            fotos.push(e.target.result);
+            var img = {
+              nome: escape(theFile.name),
+              url: e.target.result, 
+              hasImg: true
+            };
+    
+            imgs.push(img);
             for (let index = 0; index < imgs.length; index++) 
             {
-              $("#img"+(countImages + index)).attr("src", fotos[index]);
+              $("#img"+(countImages + index)).attr("src", imgs[index].url);
               $("#img"+(countImages + index)).attr("alt", imgs[index].nome);
               $("#img"+(countImages + index)).attr("height", "250px");
               $("#img"+(countImages + index)).attr("width", "250px");
